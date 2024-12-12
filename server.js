@@ -18,3 +18,6 @@ app.use('/assets', express.static(staticPath));
 app.use('/assets', (req, res) => {
     res.status(404).send('File Not Found');
 });
+app.get('/', (req, res) => {
+    res.send('Select a collection, e.g., /collection/messages');
+});
