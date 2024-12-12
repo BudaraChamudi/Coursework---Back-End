@@ -15,3 +15,6 @@ MongoClient.connect('mongodb+srv://budarachamudi:chamu202@cluster0.jitrk.mongodb
 });
 var staticPath = path.resolve(__dirname, "assets");
 app.use('/assets', express.static(staticPath));
+app.use('/assets', (req, res) => {
+    res.status(404).send('File Not Found');
+});
