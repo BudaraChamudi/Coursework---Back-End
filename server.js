@@ -40,3 +40,9 @@ app.post('/collection/Orders', async (req, res) => {
         res.status(500).json({ success: false, error: "An error occurred." });
     }
 });
+app.get('/collection/:collectionName/:id', (req, res) => {
+    req.collection.findOne({ _id: new ObjectID(req.params.id) }, (e, result) => {
+        if (e) return next(e);
+        res.send(result);
+    });
+});
