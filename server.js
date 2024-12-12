@@ -57,3 +57,12 @@ app.put('/collection/:collectionName/:id', (req, res) => {
         }
     );
 });
+app.delete('/collection/:collectionName/:id', (req, res) => {
+    req.collection.deleteOne(
+        { _id: new ObjectID(req.params.id) }, 
+        (e, result) => {
+            if (e) return next(e);
+            res.send(result.result.n === 1 ? { msg: 'success' } : { msg: 'error' });
+        }
+    );
+});
