@@ -31,3 +31,12 @@ app.get('/collection/:collectionName', (req, res) => {
         res.send(results);
     });
 });
+app.post('/collection/Orders', async (req, res) => {
+    const newOrder = req.body;
+    try {
+        const result = await db.collection('Orders').insertOne(newOrder);
+        res.status(200).json({ success: true, message: "Order placed successfully." });
+    } catch (error) {
+        res.status(500).json({ success: false, error: "An error occurred." });
+    }
+});
