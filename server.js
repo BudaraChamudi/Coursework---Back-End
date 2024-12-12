@@ -25,3 +25,9 @@ app.param('collectionName', (req, res, next, collectionName) => {
     req.collection = db.collection(collectionName);
     return next();
 });
+app.get('/collection/:collectionName', (req, res) => {
+    req.collection.find({}).toArray((e, results) => {
+        if (e) return next(e);
+        res.send(results);
+    });
+});
