@@ -13,3 +13,5 @@ const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://budarachamudi:chamu202@cluster0.jitrk.mongodb.net/', (err, client) => {
     db = client.db('Webstore');
 });
+var staticPath = path.resolve(__dirname, "assets");
+app.use('/assets', express.static(staticPath));
