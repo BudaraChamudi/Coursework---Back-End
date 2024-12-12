@@ -21,3 +21,7 @@ app.use('/assets', (req, res) => {
 app.get('/', (req, res) => {
     res.send('Select a collection, e.g., /collection/messages');
 });
+app.param('collectionName', (req, res, next, collectionName) => {
+    req.collection = db.collection(collectionName);
+    return next();
+});
