@@ -66,3 +66,16 @@ app.delete('/collection/:collectionName/:id', (req, res) => {
         }
     );
 });
+app.put('/collection/Products/:id', (req, res) => {
+    const lessonId = new ObjectID(req.params.id);
+    const { availableInventory } = req.body;
+
+    req.collection.updateOne(
+        { _id: lessonId },
+        { $set: { availableInventory } },
+        (err, result) => {
+            if (err) return res.status(500).send({ msg: "Error updating inventory" });
+            res.status(200).send({ msg: "Inventory updated successfully" });
+        }
+    );
+});
